@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Item" load_steps=4 format=3 uid="uid://c5mgokg52ipxl"]
+
+[ext_resource type="Texture2D" uid="uid://ykre2yknxys2" path="res://items/Stone/Stone_icon.png" id="1_5igwi"]
+[ext_resource type="PackedScene" uid="uid://bwxa0gpvd11no" path="res://items/Stone/Stone.tscn" id="2_uquls"]
+[ext_resource type="Script" path="res://scripts/Item.gd" id="3_og4fj"]
+
+[resource]
+script = ExtResource("3_og4fj")
+item_type = 2
+item_scene = ExtResource("2_uquls")
+item_icon = ExtResource("1_5igwi")
+item_name = "Stone"
+item_max_stack = 64

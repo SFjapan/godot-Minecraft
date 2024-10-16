@@ -1,0 +1,264 @@
+[gd_scene load_steps=11 format=3 uid="uid://djhhxei15l0tf"]
+
+[ext_resource type="Script" path="res://scripts/Character.gd" id="1_0kgmt"]
+[ext_resource type="Script" path="res://scripts/fps.gd" id="2_1bq1y"]
+[ext_resource type="Texture2D" uid="uid://dkds1ivoi8q5p" path="res://icon.svg" id="3_57meb"]
+[ext_resource type="Texture2D" uid="uid://ud53wmxgugm" path="res://border.png" id="4_6ye1w"]
+[ext_resource type="Script" path="res://scripts/Slot.gd" id="5_js6th"]
+[ext_resource type="Texture2D" uid="uid://dt8hc7sexb3hg" path="res://items/Grass/Grass_icon.png" id="5_oysgu"]
+[ext_resource type="Resource" uid="uid://caw6f0i7wy8yk" path="res://items/Grass/Grass.tres" id="6_ftr48"]
+[ext_resource type="Resource" uid="uid://c5mgokg52ipxl" path="res://items/Stone/Stone.tres" id="8_1elyo"]
+[ext_resource type="Resource" uid="uid://r5itskt5vv03" path="res://items/Oak_plank/Oak_plant.tres" id="9_8scvg"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_kl6py"]
+size = Vector3(1, 1.75, 1)
+
+[node name="CharacterBody3D" type="CharacterBody3D" node_paths=PackedStringArray("Slots") groups=["Player"]]
+collision_mask = 3
+script = ExtResource("1_0kgmt")
+Slots = [NodePath("TextureRect/HBoxContainer/TextureRect"), NodePath("TextureRect/HBoxContainer/TextureRect2"), NodePath("TextureRect/HBoxContainer/TextureRect3"), NodePath("TextureRect/HBoxContainer/TextureRect4"), NodePath("TextureRect/HBoxContainer/TextureRect5"), NodePath("TextureRect/HBoxContainer/TextureRect6"), NodePath("TextureRect/HBoxContainer/TextureRect7"), NodePath("TextureRect/HBoxContainer/TextureRect8"), NodePath("TextureRect/HBoxContainer/TextureRect9"), NodePath("TextureRect/HBoxContainer/TextureRect10"), NodePath("TextureRect/HBoxContainer/TextureRect11")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(0.9, 0, 0, 0, 0.9, 0, 0, 0, 0.9, 0, 0, 0)
+shape = SubResource("BoxShape3D_kl6py")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.654019, 0.0272866)
+
+[node name="RayCast3D" type="RayCast3D" parent="Camera3D"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+target_position = Vector3(0, -3, 0)
+collision_mask = 3
+
+[node name="fps" type="Label" parent="."]
+offset_right = 275.0
+offset_bottom = 191.0
+theme_override_font_sizes/font_size = 10
+text = "asdads"
+script = ExtResource("2_1bq1y")
+
+[node name="Panel" type="Panel" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -2.0
+offset_top = -3.0
+offset_right = 38.0
+offset_bottom = 37.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.115, 0.115)
+
+[node name="TextureRect" type="TextureRect" parent="."]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -540.0
+offset_top = -141.0
+offset_right = -3.0
+offset_bottom = -101.0
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(2, 2)
+texture = ExtResource("3_57meb")
+expand_mode = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TextureRect"]
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 0
+offset_left = 6.0
+offset_top = -1.0
+offset_right = 530.0
+offset_bottom = 39.0
+alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="TextureRect/HBoxContainer"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+texture = ExtResource("4_6ye1w")
+expand_mode = 1
+script = ExtResource("5_js6th")
+item = ExtResource("6_ftr48")
+
+[node name="TextureRect" type="TextureRect" parent="TextureRect/HBoxContainer/TextureRect"]
+layout_mode = 1
+offset_left = 2.0
+offset_top = 2.0
+offset_right = 37.335
+offset_bottom = 37.335
+texture = ExtResource("5_oysgu")
+expand_mode = 1
+
+[node name="TextureRect2" type="TextureRect" parent="TextureRect/HBoxContainer"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+texture = ExtResource("4_6ye1w")
+expand_mode = 1
+script = ExtResource("5_js6th")
+item = ExtResource("8_1elyo")
+
+[node name="TextureRect" type="TextureRect" parent="TextureRect/HBoxContainer/TextureRect2"]
+layout_mode = 1
+offset_left = 2.0
+offset_top = 2.0
+offset_right = 37.335
+offset_bottom = 37.335
+texture = ExtResource("5_oysgu")
+expand_mode = 1
+
+[node name="TextureRect3" type="TextureRect" parent="TextureRect/HBoxContainer"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+texture = ExtResource("4_6ye1w")
+expand_mode = 1
+script = ExtResource("5_js6th")
+item = ExtResource("9_8scvg")
+
+[node name="TextureRect" type="TextureRect" parent="TextureRect/HBoxContainer/TextureRect3"]
+layout_mode = 1
+offset_left = 2.0
+offset_top = 2.0
+offset_right = 37.335
+offset_bottom = 37.335
+texture = ExtResource("5_oysgu")
+expand_mode = 1
+
+[node name="TextureRect4" type="TextureRect" parent="TextureRect/HBoxContainer"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+texture = ExtResource("4_6ye1w")
+expand_mode = 1
+script = ExtResource("5_js6th")
+item = ExtResource("6_ftr48")
+
+[node name="TextureRect" type="TextureRect" parent="TextureRect/HBoxContainer/TextureRect4"]
+layout_mode = 1
+offset_left = 2.0
+offset_top = 2.0
+offset_right = 37.335
+offset_bottom = 37.335
+texture = ExtResource("5_oysgu")
+expand_mode = 1
+
+[node name="TextureRect5" type="TextureRect" parent="TextureRect/HBoxContainer"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+texture = ExtResource("4_6ye1w")
+expand_mode = 1
+script = ExtResource("5_js6th")
+item = ExtResource("6_ftr48")
+
+[node name="TextureRect" type="TextureRect" parent="TextureRect/HBoxContainer/TextureRect5"]
+layout_mode = 1
+offset_left = 2.0
+offset_top = 2.0
+offset_right = 37.335
+offset_bottom = 37.335
+texture = ExtResource("5_oysgu")
+expand_mode = 1
+
+[node name="TextureRect6" type="TextureRect" parent="TextureRect/HBoxContainer"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+texture = ExtResource("4_6ye1w")
+expand_mode = 1
+script = ExtResource("5_js6th")
+item = ExtResource("6_ftr48")
+
+[node name="TextureRect" type="TextureRect" parent="TextureRect/HBoxContainer/TextureRect6"]
+layout_mode = 1
+offset_left = 2.0
+offset_top = 2.0
+offset_right = 37.335
+offset_bottom = 37.335
+texture = ExtResource("5_oysgu")
+expand_mode = 1
+
+[node name="TextureRect7" type="TextureRect" parent="TextureRect/HBoxContainer"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+texture = ExtResource("4_6ye1w")
+expand_mode = 1
+script = ExtResource("5_js6th")
+item = ExtResource("6_ftr48")
+
+[node name="TextureRect" type="TextureRect" parent="TextureRect/HBoxContainer/TextureRect7"]
+layout_mode = 1
+offset_left = 2.0
+offset_top = 2.0
+offset_right = 37.335
+offset_bottom = 37.335
+texture = ExtResource("5_oysgu")
+expand_mode = 1
+
+[node name="TextureRect8" type="TextureRect" parent="TextureRect/HBoxContainer"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+texture = ExtResource("4_6ye1w")
+expand_mode = 1
+script = ExtResource("5_js6th")
+item = ExtResource("6_ftr48")
+
+[node name="TextureRect" type="TextureRect" parent="TextureRect/HBoxContainer/TextureRect8"]
+layout_mode = 1
+offset_left = 2.0
+offset_top = 2.0
+offset_right = 37.335
+offset_bottom = 37.335
+texture = ExtResource("5_oysgu")
+expand_mode = 1
+
+[node name="TextureRect9" type="TextureRect" parent="TextureRect/HBoxContainer"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+texture = ExtResource("4_6ye1w")
+expand_mode = 1
+script = ExtResource("5_js6th")
+item = ExtResource("6_ftr48")
+
+[node name="TextureRect" type="TextureRect" parent="TextureRect/HBoxContainer/TextureRect9"]
+layout_mode = 1
+offset_left = 2.0
+offset_top = 2.0
+offset_right = 37.335
+offset_bottom = 37.335
+texture = ExtResource("5_oysgu")
+expand_mode = 1
+
+[node name="TextureRect10" type="TextureRect" parent="TextureRect/HBoxContainer"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+texture = ExtResource("4_6ye1w")
+expand_mode = 1
+script = ExtResource("5_js6th")
+item = ExtResource("6_ftr48")
+
+[node name="TextureRect" type="TextureRect" parent="TextureRect/HBoxContainer/TextureRect10"]
+layout_mode = 1
+offset_left = 2.0
+offset_top = 2.0
+offset_right = 37.335
+offset_bottom = 37.335
+texture = ExtResource("5_oysgu")
+expand_mode = 1
+
+[node name="TextureRect11" type="TextureRect" parent="TextureRect/HBoxContainer"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+texture = ExtResource("4_6ye1w")
+expand_mode = 1
+script = ExtResource("5_js6th")
+item = ExtResource("6_ftr48")
+
+[node name="TextureRect" type="TextureRect" parent="TextureRect/HBoxContainer/TextureRect11"]
+layout_mode = 1
+offset_left = 2.0
+offset_top = 2.0
+offset_right = 37.335
+offset_bottom = 37.335
+texture = ExtResource("5_oysgu")
+expand_mode = 1

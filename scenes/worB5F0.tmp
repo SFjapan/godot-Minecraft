@@ -1,0 +1,34 @@
+[gd_scene load_steps=7 format=3 uid="uid://dispvjymidb8d"]
+
+[ext_resource type="Script" path="res://scripts/world.gd" id="1_ple6v"]
+[ext_resource type="PackedScene" uid="uid://djhhxei15l0tf" path="res://scenes/Character.tscn" id="1_uwtrn"]
+[ext_resource type="PackedScene" uid="uid://bf2eqnnpyc66c" path="res://scenes/Dirt.tscn" id="3_p30r0"]
+
+[sub_resource type="PhysicalSkyMaterial" id="PhysicalSkyMaterial_ue2i8"]
+
+[sub_resource type="Sky" id="Sky_cavwe"]
+sky_material = SubResource("PhysicalSkyMaterial_ue2i8")
+
+[sub_resource type="Environment" id="Environment_wopf6"]
+background_mode = 2
+sky = SubResource("Sky_cavwe")
+ssr_enabled = true
+ssao_enabled = true
+ssil_enabled = true
+sdfgi_enabled = true
+glow_enabled = true
+
+[node name="World" type="Node3D"]
+script = ExtResource("1_ple6v")
+dirt = ExtResource("3_p30r0")
+
+[node name="CharacterBody3D" parent="." instance=ExtResource("1_uwtrn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 12.9516, 0)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 30, 0)
+light_energy = 8.596
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_wopf6")

@@ -1,0 +1,34 @@
+[gd_scene load_steps=9 format=3 uid="uid://bf2eqnnpyc66c"]
+
+[ext_resource type="Script" path="res://scripts/Block.gd" id="1_rjd3s"]
+[ext_resource type="Texture2D" uid="uid://du3rq60yiwwt" path="res://Grass_Block_TEX.png" id="2_65rc8"]
+[ext_resource type="ArrayMesh" uid="uid://7clhc1crkj63" path="res://Grass_Block.obj" id="3_e6xry"]
+[ext_resource type="Shader" path="res://outline.gdshader" id="4_m466w"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7suim"]
+albedo_texture = ExtResource("2_65rc8")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ebvuj"]
+render_priority = 0
+shader = ExtResource("4_m466w")
+shader_parameter/color = Color(0.0660974, 2.91417e-08, 5.2643e-09, 1)
+shader_parameter/size = 1.01
+shader_parameter/enable = false
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_a66cs"]
+next_pass = SubResource("ShaderMaterial_ebvuj")
+cull_mode = 1
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_1reso"]
+
+[node name="Grass" type="StaticBody3D"]
+script = ExtResource("1_rjd3s")
+
+[node name="GrassBlock" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, -0.5, 0)
+material_override = SubResource("StandardMaterial3D_7suim")
+material_overlay = SubResource("StandardMaterial3D_a66cs")
+mesh = ExtResource("3_e6xry")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_1reso")

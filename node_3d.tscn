@@ -1,0 +1,20 @@
+[gd_scene load_steps=5 format=3 uid="uid://x5xb6iikucf5"]
+
+[ext_resource type="Shader" path="res://scripts/test.gdshader" id="1_pf2to"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_7ggj8"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jl6uv"]
+render_priority = 0
+shader = ExtResource("1_pf2to")
+shader_parameter/color = Color(1, 0, 0, 1)
+shader_parameter/size = 1.05
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xa65r"]
+next_pass = SubResource("ShaderMaterial_jl6uv")
+
+[node name="Node3D" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_7ggj8")
+surface_material_override/0 = SubResource("StandardMaterial3D_xa65r")

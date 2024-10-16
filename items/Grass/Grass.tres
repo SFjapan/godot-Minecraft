@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Item" load_steps=4 format=3 uid="uid://caw6f0i7wy8yk"]
+
+[ext_resource type="Texture2D" uid="uid://dt8hc7sexb3hg" path="res://items/Grass/Grass_icon.png" id="1_gqdma"]
+[ext_resource type="PackedScene" uid="uid://bf2eqnnpyc66c" path="res://items/Grass/Grass.tscn" id="2_cv1yu"]
+[ext_resource type="Script" path="res://scripts/Item.gd" id="3_2idff"]
+
+[resource]
+script = ExtResource("3_2idff")
+item_type = 2
+item_scene = ExtResource("2_cv1yu")
+item_icon = ExtResource("1_gqdma")
+item_name = "Grass"
+item_max_stack = 64
