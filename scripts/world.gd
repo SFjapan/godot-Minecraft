@@ -1,8 +1,8 @@
 extends Node3D
 
 var noise = FastNoiseLite.new()
-@export var  grass:PackedScene
-@export var stone:PackedScene
+@onready var  grass:PackedScene = preload("res://items/Grass/Grass.tscn")
+@onready var stone:PackedScene = preload("res://items/Stone/Stone.tscn")
 var min_height = -10
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -36,7 +36,9 @@ func generate_chunk():
 
 
 func create_block(position: Vector3,block:PackedScene):
-	var current_block = block.instantiate() as StaticBody3D		
+	var current_block = block.instantiate() as Block
+	if not current_block.block_item:
+		current_block.block_item = preload("res://items/Grass/Grass.tres")	
 	current_block.position = position
 	return current_block
 	

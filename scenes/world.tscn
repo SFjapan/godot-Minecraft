@@ -1,9 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://dispvjymidb8d"]
+[gd_scene load_steps=6 format=3 uid="uid://dispvjymidb8d"]
 
 [ext_resource type="Script" path="res://scripts/world.gd" id="1_ple6v"]
 [ext_resource type="PackedScene" uid="uid://djhhxei15l0tf" path="res://scenes/Player.tscn" id="1_uwtrn"]
-[ext_resource type="PackedScene" uid="uid://bwxa0gpvd11no" path="res://items/Stone/Stone.tscn" id="3_cin2s"]
-[ext_resource type="PackedScene" uid="uid://bf2eqnnpyc66c" path="res://items/Grass/Grass.tscn" id="3_p30r0"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_gjb02"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -19,8 +17,6 @@ tonemap_mode = 2
 
 [node name="World" type="Node3D"]
 script = ExtResource("1_ple6v")
-grass = ExtResource("3_p30r0")
-stone = ExtResource("3_cin2s")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)

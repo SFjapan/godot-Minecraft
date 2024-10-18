@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://ehemsmdvyqnw"]
+[gd_scene load_steps=10 format=3 uid="uid://ehemsmdvyqnw"]
 
 [ext_resource type="Script" path="res://scripts/Block.gd" id="1_osyd7"]
 [ext_resource type="Texture2D" uid="uid://c2p2fwb7ytetp" path="res://items/Oak_plank/Oak_plant_TEX.png" id="2_dlttx"]
+[ext_resource type="Resource" uid="uid://r5itskt5vv03" path="res://items/Oak_plank/Oak_plant.tres" id="2_vorr8"]
 [ext_resource type="ArrayMesh" uid="uid://7clhc1crkj63" path="res://items/Grass/Grass_Block.obj" id="3_bstnd"]
 [ext_resource type="Shader" path="res://outline.gdshader" id="4_qh67w"]
 
@@ -21,12 +22,13 @@ cull_mode = 1
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_1reso"]
 
-[node name="Grass" type="StaticBody3D" groups=["Block"]]
+[node name="Oak" type="StaticBody3D" groups=["Block"]]
 collision_layer = 2
 script = ExtResource("1_osyd7")
-BlockName = "Grass"
-MAX_Endurance = 30.0
-Endurance = 30.0
+BlockName = "Oak"
+MAX_Endurance = 40.0
+Endurance = 40.0
+block_item = ExtResource("2_vorr8")
 
 [node name="Block" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, -0.5, 0)

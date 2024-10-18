@@ -1,0 +1,224 @@
+[gd_scene load_steps=9 format=3 uid="uid://djhhxei15l0tf"]
+
+[ext_resource type="Script" path="res://scripts/Character.gd" id="1_0kgmt"]
+[ext_resource type="Script" path="res://scripts/fps.gd" id="2_1bq1y"]
+[ext_resource type="Texture2D" uid="uid://dkds1ivoi8q5p" path="res://icon.svg" id="3_57meb"]
+[ext_resource type="Texture2D" uid="uid://ud53wmxgugm" path="res://border.png" id="4_6ye1w"]
+[ext_resource type="Script" path="res://scripts/HandSlot.gd" id="5_h7abc"]
+[ext_resource type="Script" path="res://scripts/Slot.gd" id="5_js6th"]
+[ext_resource type="Texture2D" uid="uid://dt8hc7sexb3hg" path="res://items/Grass/Grass_icon.png" id="5_oysgu"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_kl6py"]
+size = Vector3(1, 1.75, 1)
+
+[node name="CharacterBody3D" type="CharacterBody3D" groups=["Player"]]
+collision_mask = 3
+script = ExtResource("1_0kgmt")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(0.9, 0, 0, 0, 0.9, 0, 0, 0, 0.9, 0, 0, 0)
+shape = SubResource("BoxShape3D_kl6py")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.654019, 0.0272866)
+
+[node name="RayCast3D" type="RayCast3D" parent="Camera3D"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+target_position = Vector3(0, -3, 0)
+collision_mask = 3
+
+[node name="fps" type="Label" parent="."]
+offset_right = 275.0
+offset_bottom = 191.0
+theme_override_font_sizes/font_size = 10
+text = "asdads"
+script = ExtResource("2_1bq1y")
+
+[node name="Panel" type="Panel" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -2.0
+offset_top = -3.0
+offset_right = 38.0
+offset_bottom = 37.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.115, 0.115)
+
+[node name="HandSlots" type="TextureRect" parent="."]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -540.0
+offset_top = -141.0
+offset_right = -3.0
+offset_bottom = -101.0
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(2, 2)
+texture = ExtResource("3_57meb")
+expand_mode = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HandSlots"]
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 0
+offset_left = 6.0
+offset_top = -1.0
+offset_right = 530.0
+offset_bottom = 39.0
+alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="HandSlots/HBoxContainer"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+texture = ExtResource("4_6ye1w")
+expand_mode = 1
+script = ExtResource("5_h7abc")
+
+[node name="TextureRect" type="TextureRect" parent="HandSlots/HBoxContainer/TextureRect"]
+layout_mode = 1
+offset_left = 2.0
+offset_top = 2.0
+offset_right = 37.335
+offset_bottom = 37.335
+texture = ExtResource("5_oysgu")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="HandSlots/HBoxContainer/TextureRect"]
+layout_mode = 0
+offset_left = 7.5
+offset_top = 21.5
+offset_right = 47.5
+offset_bottom = 44.5
+scale = Vector2(0.75, 0.75)
+text = "1"
+horizontal_alignment = 2
+
+[node name="inv" type="Panel" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -471.0
+offset_top = -314.0
+offset_right = 468.0
+offset_bottom = 167.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="GridContainer" type="GridContainer" parent="inv"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 150.0
+offset_top = -59.5
+offset_right = 786.0
+offset_bottom = 192.5
+grow_vertical = 2
+columns = 10
+
+[node name="TextureRect" type="TextureRect" parent="inv/GridContainer"]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+texture = ExtResource("4_6ye1w")
+expand_mode = 1
+script = ExtResource("5_js6th")
+
+[node name="TextureRect" type="TextureRect" parent="inv/GridContainer/TextureRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -26.0
+offset_top = -26.0
+offset_right = 9.33501
+offset_bottom = 9.335
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.48, 1.48)
+texture = ExtResource("5_oysgu")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="inv/GridContainer/TextureRect"]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 33.0
+offset_right = 56.0
+offset_bottom = 56.0
+text = "64"
+horizontal_alignment = 2
+
+[node name="TextureRect2" type="TextureRect" parent="inv/GridContainer"]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+texture = ExtResource("4_6ye1w")
+expand_mode = 1
+script = ExtResource("5_js6th")
+
+[node name="TextureRect" type="TextureRect" parent="inv/GridContainer/TextureRect2"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -26.0
+offset_top = -26.0
+offset_right = 9.33501
+offset_bottom = 9.335
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.48, 1.48)
+texture = ExtResource("5_oysgu")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="inv/GridContainer/TextureRect2"]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 33.0
+offset_right = 56.0
+offset_bottom = 56.0
+text = "64"
+horizontal_alignment = 2
+
+[node name="TextureRect3" type="TextureRect" parent="inv/GridContainer"]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+texture = ExtResource("4_6ye1w")
+expand_mode = 1
+script = ExtResource("5_js6th")
+
+[node name="TextureRect" type="TextureRect" parent="inv/GridContainer/TextureRect3"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -26.0
+offset_top = -26.0
+offset_right = 9.33501
+offset_bottom = 9.335
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.48, 1.48)
+texture = ExtResource("5_oysgu")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="inv/GridContainer/TextureRect3"]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 33.0
+offset_right = 56.0
+offset_bottom = 56.0
+text = "64"
+horizontal_alignment = 2

@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://bwxa0gpvd11no"]
+[gd_scene load_steps=10 format=3 uid="uid://bwxa0gpvd11no"]
 
 [ext_resource type="Script" path="res://scripts/Block.gd" id="1_munq5"]
 [ext_resource type="Texture2D" uid="uid://c4y5gv7unh1r6" path="res://items/Stone/Stone_Block_TEX.png" id="2_7y0ij"]
+[ext_resource type="Resource" uid="uid://c5mgokg52ipxl" path="res://items/Stone/Stone.tres" id="2_spi3c"]
 [ext_resource type="ArrayMesh" uid="uid://7clhc1crkj63" path="res://items/Grass/Grass_Block.obj" id="3_tqvvs"]
 [ext_resource type="Shader" path="res://outline.gdshader" id="4_45xjr"]
 
@@ -27,6 +28,7 @@ script = ExtResource("1_munq5")
 BlockName = "Stone"
 MAX_Endurance = 50.0
 Endurance = 50.0
+block_item = ExtResource("2_spi3c")
 
 [node name="Block" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, -0.5, 0)

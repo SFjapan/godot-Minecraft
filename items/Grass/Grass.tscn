@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://bf2eqnnpyc66c"]
+[gd_scene load_steps=10 format=3 uid="uid://bf2eqnnpyc66c"]
 
 [ext_resource type="Script" path="res://scripts/Block.gd" id="1_p088s"]
 [ext_resource type="Texture2D" uid="uid://du3rq60yiwwt" path="res://items/Grass/Grass_Block_TEX.png" id="2_a0fnh"]
+[ext_resource type="Resource" uid="uid://caw6f0i7wy8yk" path="res://items/Grass/Grass.tres" id="2_d2rc5"]
 [ext_resource type="ArrayMesh" uid="uid://7clhc1crkj63" path="res://items/Grass/Grass_Block.obj" id="3_5fmoc"]
 [ext_resource type="Shader" path="res://outline.gdshader" id="4_l1nmp"]
 
@@ -27,6 +28,7 @@ script = ExtResource("1_p088s")
 BlockName = "Grass"
 MAX_Endurance = 30.0
 Endurance = 30.0
+block_item = ExtResource("2_d2rc5")
 
 [node name="Block" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, -0.5, 0)

@@ -6,6 +6,7 @@ class_name Block
 @export var Endurance:float 
 @onready var mesh:GeometryInstance3D = $GrassBlock
 @onready var outline = $outline
+@export var block_item:Item
 var selected:bool = false
 
 
@@ -28,7 +29,7 @@ func dig(power:float):
 							Vector3(position.x,position.y-1,position.z),Vector3(position.x,position.y+1,position.z),
 							Vector3(position.x,position.y,position.z-1),Vector3(position.x,position.y,position.z+1),
 						]
-		var count = 0;				
+		var count = 0		
 		for i in adjacents:
 			var space = PhysicsServer3D.space_get_direct_state(get_world_3d().get_space())
 			var parameters = PhysicsPointQueryParameters3D.new()
@@ -42,4 +43,6 @@ func dig(power:float):
 					if col.collider is StaticBody3D:
 						col.collider.get_child(0).visible = true
 						col.collider.get_child(1).visible = true
+						
+		Inventory.add_item(block_item,1)				
 		queue_free()

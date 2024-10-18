@@ -1,32 +1,51 @@
-class_name Slot
+class_name HandSlot
 extends TextureRect
 
 @onready var item_slot:TextureRect = $TextureRect
-@export var item:Item
+@onready var parent = $".."
+@onready var body = $"../../.."
+@onready var bg = preload("res://border.png")
+@onready var border = preload("res://border_black.png") 
 @onready var stack_label = $Label
 
-var stack = 0
-func _ready():
-	set_item(preload("res://items/Grass/Grass.tres"),1)
-func set_item(item:Item,count:int):
-	if self.item:
-		if self.item == item:
-			stack += count
-			
-	else :
-		self.item = item
-		stack = count
-		item_slot.texture = self.item.item_icon
-		stack_label.text = str(stack)
+var stack:int = 0
+@export var item:Item
+func  _ready():
+	item_slot.texture = null
+	stack_label.text = ""
+	if body:
+		print("ashd")
+		body.change_hand_slot.connect(change_slot)
+	else:
+		print("non parent")	
+	if parent.get_child(0) == self:
+		texture = border
+		body.hand_item = item	
+	pass
+
+func change_slot(index:int):
+	print(index)
+	if parent.get_child(index) == self:			
+		texture = border
+		if item:
+			body.hand_item = item
+	else:
+		texture = bg
 
 func update_slot():
-	if not item:
+	if not item or stack < 1:
+		item = null
 		item_slot.texture = null
 		stack = 0
 		stack_label.text = ""	
 	else:
 		item_slot.texture = item.item_icon
-		stack_label.text = str(stack)		
+		stack_label.text = str(stack)	
+	
+	if body.hand_slot_index == 	parent.get_index():
+		if not item or stack <= 0:
+			body.hand_item = null
+			body.hand_slot_index = -1
 #drag and drop
 
 func _get_drag_data(at_position):
@@ -64,16 +83,14 @@ func _drop_data(at_position, data):
 		if data.item == self.item and data.stack + self.stack < data.item.item_max_stack:
 			self.stack += data.stack
 			data.item = null
-			
+			data.update_slot()
+			self.update_slot()
 		elif not self.item:
 			#update slot
 			self.item = data.item
 			self.stack = data.stack
-
+			self.update_slot()	
 			#clear slot
 			data.item = null
-
-	data.update_slot()
-	self.update_slot()		
+			data.update_slot()
 	print(data)
-
