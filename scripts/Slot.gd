@@ -3,11 +3,18 @@ extends TextureRect
 
 @onready var item_slot:TextureRect = $TextureRect
 @export var item:Item
-@onready var stack_label = $Label
-
+@onready var stack_label:Label = $Label
+var index = 0
 var stack = 0
 func _ready():
-	set_item(preload("res://items/Grass/Grass.tres"),1)
+	if not stack_label:
+		print("not label")
+	item_slot.texture = null
+	stack = 0
+	item = null
+	stack_label.text = " "
+	index = get_index() + 11
+
 func set_item(item:Item,count:int):
 	if self.item:
 		if self.item == item:
@@ -20,13 +27,14 @@ func set_item(item:Item,count:int):
 		stack_label.text = str(stack)
 
 func update_slot():
-	if not item:
+	if not item or stack < 1:
+		item = null
 		item_slot.texture = null
 		stack = 0
-		stack_label.text = ""	
+		stack_label.text = " "	
 	else:
 		item_slot.texture = item.item_icon
-		stack_label.text = str(stack)		
+		stack_label.text = str(stack)	
 #drag and drop
 
 func _get_drag_data(at_position):
@@ -60,20 +68,34 @@ func _can_drop_data(at_position, data):
 	return data is TextureRect
 	
 func _drop_data(at_position, data):
+	var inv = Inventory.inventory
 	if data is Slot or data is HandSlot:
-		if data.item == self.item and data.stack + self.stack < data.item.item_max_stack:
-			self.stack += data.stack
-			data.item = null
-			
+		if not data.item:
+			return
+		#同じアイテム	
+		if data.item == self.item:
+			if self.stack + data.stack > self.item.item_max_stack:
+				data.stack = self.stack + data.stack - self.item.item_max_stack
+				self.stack = self.item.item_max_stack
+				
+			else:
+				self.stack += data.stack
+				data.item = null	
+				data.stack = 0			
+			data.update_slot()
+			self.update_slot()
+				
 		elif not self.item:
 			#update slot
 			self.item = data.item
 			self.stack = data.stack
-
+			self.update_slot()	
 			#clear slot
 			data.item = null
+			data.stack = 0
+			data.update_slot()
 
-	data.update_slot()
-	self.update_slot()		
-	print(data)
+		inv[self.index]= {"item":self.item,"count":self.stack}
+		inv[data.index]={"item":data.item,"count":data.stack}
+
 

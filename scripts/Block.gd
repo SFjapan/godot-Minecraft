@@ -6,7 +6,7 @@ class_name Block
 @export var Endurance:float 
 @onready var mesh:GeometryInstance3D = $GrassBlock
 @onready var outline = $outline
-@export var block_item:Item
+var block_item:Item
 var selected:bool = false
 
 

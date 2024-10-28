@@ -1,48 +1,41 @@
-[gd_scene load_steps=10 format=3 uid="uid://bf2eqnnpyc66c"]
+[gd_scene load_steps=8 format=3 uid="uid://dctcsambpuofq"]
 
 [ext_resource type="Script" path="res://scripts/Block.gd" id="1_p088s"]
 [ext_resource type="Texture2D" uid="uid://du3rq60yiwwt" path="res://items/Grass/Grass_Block_TEX.png" id="2_a0fnh"]
-[ext_resource type="Resource" uid="uid://caw6f0i7wy8yk" path="res://items/Grass/Grass.tres" id="2_d2rc5"]
-[ext_resource type="ArrayMesh" uid="uid://7clhc1crkj63" path="res://items/Grass/Grass_Block.obj" id="3_5fmoc"]
-[ext_resource type="Shader" path="res://outline.gdshader" id="4_l1nmp"]
+[ext_resource type="ArrayMesh" uid="uid://7clhc1crkj63" path="res://items/Grass/Grass_Block.obj" id="2_ns0oy"]
+[ext_resource type="Shader" path="res://scripts/test.gdshader" id="3_6vf3u"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7suim"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gu7fb"]
 albedo_texture = ExtResource("2_a0fnh")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_ebvuj"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ls4dg"]
 render_priority = 0
-shader = ExtResource("4_l1nmp")
-shader_parameter/color = Color(0.0660974, 2.91417e-08, 5.2643e-09, 1)
-shader_parameter/size = 1.02
-shader_parameter/enable = true
+shader = ExtResource("3_6vf3u")
+shader_parameter/color = Color(0, 0, 0, 1)
+shader_parameter/size = 1.03
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_a66cs"]
-next_pass = SubResource("ShaderMaterial_ebvuj")
-cull_mode = 1
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_3knk6"]
+data = PackedVector3Array(1, 0, 1, 1, 0, -1, -1, 0, 1, -1, 0, 1, 1, 0, -1, -1, 0, -1, -1, 2, -1, 1, 2, -1, -1, 2, 1, -1, 2, 1, 1, 2, -1, 1, 2, 1, 1, 2, -1, 1, 0, -1, 1, 2, 1, 1, 2, 1, 1, 0, -1, 1, 0, 1, 1, 2, 1, 1, 0, 1, -1, 2, 1, -1, 2, 1, 1, 0, 1, -1, 0, 1, -1, 2, 1, -1, 0, 1, -1, 2, -1, -1, 2, -1, -1, 0, 1, -1, 0, -1, 1, 0, -1, 1, 2, -1, -1, 0, -1, -1, 0, -1, 1, 2, -1, -1, 2, -1)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_1reso"]
-
-[node name="Grass" type="StaticBody3D" groups=["Block"]]
-collision_layer = 2
+[node name="Grass" type="StaticBody3D"]
 script = ExtResource("1_p088s")
 BlockName = "Grass"
 MAX_Endurance = 30.0
 Endurance = 30.0
-block_item = ExtResource("2_d2rc5")
 
 [node name="Block" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, -0.5, 0)
-material_override = SubResource("StandardMaterial3D_7suim")
-visibility_range_end = 50.0
-mesh = ExtResource("3_5fmoc")
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_gu7fb")
+visibility_range_end = 30.0
+mesh = ExtResource("2_ns0oy")
 
 [node name="outline" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, -0.5, 0)
-visible = false
-material_override = SubResource("StandardMaterial3D_7suim")
-material_overlay = SubResource("StandardMaterial3D_a66cs")
-visibility_range_end = 50.0
-mesh = ExtResource("3_5fmoc")
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_gu7fb")
+material_overlay = SubResource("ShaderMaterial_ls4dg")
+visibility_range_end = 30.0
+mesh = ExtResource("2_ns0oy")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-shape = SubResource("BoxShape3D_1reso")
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+shape = SubResource("ConcavePolygonShape3D_3knk6")

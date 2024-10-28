@@ -3,4 +3,4 @@ extends Label
 
 func _process(delta):
 	text = "FPS:" + str(Engine.get_frames_per_second())
-	text += "\n" + str(character_body_3d.position.x) + "," + str(character_body_3d.position.y) + "," + str(character_body_3d.position.z)
+	text += "\nx:" + str(character_body_3d.position.x) + "\ny:" + str(character_body_3d.position.y) + "\nz:" + str(character_body_3d.position.z)

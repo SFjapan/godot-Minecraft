@@ -38,7 +38,8 @@ func generate_chunk():
 func create_block(position: Vector3,block:PackedScene):
 	var current_block = block.instantiate() as Block
 	if not current_block.block_item:
-		current_block.block_item = preload("res://items/Grass/Grass.tres")	
+		var item_path = "res://items/" + current_block.BlockName + "/" + current_block.BlockName + ".tres"
+		current_block.block_item = ResourceLoader.load(item_path) as Item
 	current_block.position = position
 	return current_block
 	

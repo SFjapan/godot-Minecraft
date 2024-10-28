@@ -1,6 +1,6 @@
-[gd_scene load_steps=9 format=3 uid="uid://djhhxei15l0tf"]
+[gd_scene load_steps=10 format=3 uid="uid://djhhxei15l0tf"]
 
-[ext_resource type="Script" path="res://scripts/Character.gd" id="1_0kgmt"]
+[ext_resource type="Script" path="res://scripts/Player.gd" id="1_0kgmt"]
 [ext_resource type="Script" path="res://scripts/fps.gd" id="2_1bq1y"]
 [ext_resource type="Texture2D" uid="uid://dkds1ivoi8q5p" path="res://icon.svg" id="3_57meb"]
 [ext_resource type="Texture2D" uid="uid://ud53wmxgugm" path="res://border.png" id="4_6ye1w"]
@@ -8,19 +8,26 @@
 [ext_resource type="Script" path="res://scripts/Slot.gd" id="5_js6th"]
 [ext_resource type="Texture2D" uid="uid://dt8hc7sexb3hg" path="res://items/Grass/Grass_icon.png" id="5_oysgu"]
 
+[sub_resource type="BoxMesh" id="BoxMesh_ofyvk"]
+size = Vector3(0.7, 1.75, 0.7)
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_kl6py"]
-size = Vector3(1, 1.75, 1)
+size = Vector3(0.7, 1.75, 0.7)
 
 [node name="CharacterBody3D" type="CharacterBody3D" groups=["Player"]]
 collision_mask = 3
 script = ExtResource("1_0kgmt")
+power = 100
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_ofyvk")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(0.9, 0, 0, 0, 0.9, 0, 0, 0, 0.9, 0, 0, 0)
 shape = SubResource("BoxShape3D_kl6py")
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.654019, 0.0272866)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.655248, -0.318522)
 
 [node name="RayCast3D" type="RayCast3D" parent="Camera3D"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
